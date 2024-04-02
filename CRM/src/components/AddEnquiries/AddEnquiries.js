@@ -39,14 +39,11 @@ const AddEnquiries = ({navigation},props) => {
    
 
     const Categorydata = [
-        { label: 'Sofa', value: '1' },
-        { label: 'Table', value: '2' },
-        { label: 'King size bed', value: '3' },
-        { label: 'Queen size bed', value: '4' },
-        { label: 'Chair', value: '5' },
-        { label: 'Desk', value: '6' },
-        { label: 'Cot', value: '7' },
-        { label: 'Window', value: '8' },
+        { label: 'Furniture', value: '1' },
+        { label: 'Electronics', value: '2' },
+        { label: 'Motors', value: '3' },
+        { label: 'Materials', value: '4' },
+        { label: 'Electrical', value: '5' },
       ];
 
 

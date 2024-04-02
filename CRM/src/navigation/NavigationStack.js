@@ -23,6 +23,7 @@ import { QuotationListProvider } from '../contexts/QuotationsContext';
 import {ComplaintListProvider} from '../contexts/ComplaintsContext';
 import AddComplaints from '../components/AddComplaints/AddComplaints';
 import AddDeliveryChallan from '../components/AddDeliveryChallan/AddDeliveryChallan';
+import {DeliveryChallanListProvider} from '../contexts/DeliveryChallansContext';
 
 
 const {Navigator, Screen} = createStackNavigator();
@@ -120,7 +121,9 @@ function ComplaintStackNavigator() {
       <EnquiryListProvider>
         <QuotationListProvider>
           <ComplaintListProvider>
-          <DrawerNavigator/>
+            <DeliveryChallanListProvider>
+            <DrawerNavigator/>
+            </DeliveryChallanListProvider>
           </ComplaintListProvider>
         </QuotationListProvider>
       </EnquiryListProvider> 

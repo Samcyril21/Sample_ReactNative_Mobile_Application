@@ -1,10 +1,12 @@
-import {React, useState} from "react";
-import {View, Text} from 'react-native';
+import {React, useState,useContext} from "react";
+import {View, Text,FlatList,PixelRatio} from 'react-native';
 import NavigationHeaderComponent from '../../components/NavigationHeaderComponent/NavigationHeaderComponent';
 import { screeNames } from '../../utils/ScreenNames';
 import {styles} from './Style';
 import SearchBarComponent from '../../components/SearchBarComponent/SearchBarComponent';
 import AddButton from "../../components/AddButtonComponent/AddButtonComponent";
+import { DeliveryChallanListContext } from "../../contexts/DeliveryChallansContext";
+import DeliveryChallanItem from "../../components/Listing/DeliveryChallanItem/DeliveryChallanItem";
 
 
 
@@ -12,6 +14,9 @@ import AddButton from "../../components/AddButtonComponent/AddButtonComponent";
 function DeliveryChallanScreen({navigation}) {
 
     const [searchBarVisible, setSearchBarVisible] = useState(false);
+    const deliveryChallanListData = useContext(DeliveryChallanListContext);
+
+
     navigation['IsDrawer'] = true;
     navigation['title'] = 'DeliveryChallan'
     navigation['OnDrawerPress'] = OnDrawerPress = () => {
@@ -39,7 +44,13 @@ function DeliveryChallanScreen({navigation}) {
         <NavigationHeaderComponent navigation = {navigation}/>
         {searchBarVisible?<SearchBarComponent searchProps={searchProps}/>:<></>}
         <View style={styles.container}>
-            <Text>Delivery Challan Screen </Text>
+        <View style={styles.container}>
+                <FlatList
+                style={{ marginHorizontal: PixelRatio.roundToNearestPixel(13), marginVertical: 5, padding:10}}
+                data={deliveryChallanListData}
+                renderItem={({item}) => <DeliveryChallanItem item={item} />}
+                keyExtractor={item => item.DeliveryChallantId}/>
+              </View>
         </View>
         <AddButton addButtonProrps={addButtonProrps}/>
         </>

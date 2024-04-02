@@ -236,7 +236,6 @@ const AddQuatation = ({ navigation }, props) => {
     console.log(quotationList);
     navigation.navigate(screeNames.QuatationsScreen);
     toast.show("Submitted successfully", { type: "success" });
-
   }
 
   return (
@@ -352,8 +351,6 @@ const AddQuatation = ({ navigation }, props) => {
                 <TouchableOpacity onPress={handleAddItem} style={styles.addItemButton}>
                   <Text style={{ color: Appstyles.colors.COLOR_BLACK }}>Add Item </Text>
                 </TouchableOpacity>
-                <View>
-                </View>
               </View>
             </View>
           </ProgressStep>

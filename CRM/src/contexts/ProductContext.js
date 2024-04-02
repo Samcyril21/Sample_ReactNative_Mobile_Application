@@ -43,6 +43,15 @@ function ProductProvider({ children }) {
               ProductDescription:'',
               ProductImage:''
           },
+          {
+            ProductId: '#16790',
+            title: 'Iphone 11',
+            AddedOn: '01/01/2022',
+            AddedBy: 'John Doe',
+            ProductPrice:'',
+            ProductDescription:'',
+            ProductImage:''
+        },
     ]);
 
     return (

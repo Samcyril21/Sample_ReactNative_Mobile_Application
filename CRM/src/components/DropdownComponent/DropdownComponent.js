@@ -7,18 +7,18 @@ import { Appstyles } from '../../config/styles';
 
 
 const DropdownComponent = (props) => {
-  const [value, setValue] = useState(null);
+  const [value, setValue] = useState(props.value);
   const [isFocus, setIsFocus] = useState(false);
 
-  const renderLabel = () => {
-    if (value || isFocus) {
-      return (
-        <Text style={[styles.label, isFocus && { color: Appstyles.colors.PRIMARY_COLOR }]}>
-          {props.dropdownProps.dropdownLable} </Text>
-      );
-    }
-    return null;
-  };
+  // const renderLabel = () => {
+  //   if (value || isFocus) {
+  //     return (
+  //       <Text style={[styles.label, isFocus && { color: Appstyles.colors.PRIMARY_COLOR }]}>
+  //         {props.dropdownProps.dropdownLable} </Text>
+  //     );
+  //   }
+  //   return null;
+  // };
 
   return (
     <View style={props.dropdownProps.container}>
