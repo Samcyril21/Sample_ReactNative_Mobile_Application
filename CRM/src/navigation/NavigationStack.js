@@ -20,6 +20,9 @@ import AddQuatation from '../components/AddQuotation/AddQuatation';
 import { ProductProvider } from "../contexts/ProductContext";
 import {EnquiryListProvider} from '../contexts/EnquiriesContext';
 import { QuotationListProvider } from '../contexts/QuotationsContext';
+import {ComplaintListProvider} from '../contexts/ComplaintsContext';
+import AddComplaints from '../components/AddComplaints/AddComplaints';
+import AddDeliveryChallan from '../components/AddDeliveryChallan/AddDeliveryChallan';
 
 
 const {Navigator, Screen} = createStackNavigator();
@@ -46,9 +49,9 @@ function DrawerNavigator() {
       <Drawer.Screen name={screeNames.DashboardScreen} component={DashboardScreen}/>
       <Drawer.Screen name={screeNames.EnquiryScreen} component={EnquiryStackNavigator}/>
       <Drawer.Screen name={screeNames.QuatationsScreen} component={QuationStackNavigator}/>
-      <Drawer.Screen name={screeNames.DeliveryChallanScreen} component={DeliveryChallanScreen}/>
+      <Drawer.Screen name={screeNames.DeliveryChallanScreen} component={DeliveryChallanStackNavigator}/>
       <Drawer.Screen name={screeNames.JobCardsScreen} component={JobCardsScreen}/>
-      <Drawer.Screen name={screeNames.ComplaintsScreen} component={ComplaintsScreen}/>
+      <Drawer.Screen name={screeNames.ComplaintsScreen} component={ComplaintStackNavigator}/>
       <Drawer.Screen name={screeNames.AccessManagementScreen} component={AccessManagementScreen}/>
     </Drawer.Navigator>
   );
@@ -77,12 +80,48 @@ function EnquiryStackNavigator() {
     </Navigator>
   );
 }
+
+function DeliveryChallanStackNavigator() {
+  return (
+    <Navigator
+      initialRouteName={screeNames.DeliveryChallanScreen}
+      screenOptions={{
+        headerShown: false,
+      }}>
+      <Screen
+        name={screeNames.DeliveryChallanScreen}
+        component={DeliveryChallanScreen}
+      />
+      <Screen
+        name={screeNames.AddDeliveryChallan}
+        component={AddDeliveryChallan}
+      />
+
+
+    </Navigator>
+  );
+}
+
+function ComplaintStackNavigator() {
+  return (
+    <Navigator
+      initialRouteName={screeNames.ComplaintsScreen}
+      screenOptions={{
+        headerShown: false,
+      }}>
+      <Screen name={screeNames.ComplaintsScreen} component={ComplaintsScreen} />
+      <Screen name={screeNames.AddComplaintScreen} component={AddComplaints} />
+    </Navigator>
+  );
+}
   return (
  <NavigationContainer>
     <ProductProvider>
       <EnquiryListProvider>
         <QuotationListProvider>
-        <DrawerNavigator/>
+          <ComplaintListProvider>
+          <DrawerNavigator/>
+          </ComplaintListProvider>
         </QuotationListProvider>
       </EnquiryListProvider> 
     </ProductProvider>

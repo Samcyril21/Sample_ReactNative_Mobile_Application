@@ -75,8 +75,8 @@ export const styles = StyleSheet.create({
       modalFooterView:{
         flexDirection: 'row',
         justifyContent: 'center',
-        marginTop:40,
-        alignItems:'center'
+        margin:20,
+        alignItems:'center',
       },
       modalButton:{
         backgroundColor:Appstyles.colors.PRIMARY_LIGHT_COLOR,
@@ -86,26 +86,6 @@ export const styles = StyleSheet.create({
         height:50,
         alignItems:'center',
         justifyContent:'center'
-      },
-      dropdown: {
-        height: 50,
-        paddingHorizontal:6,
-    
-      },
-      placeholderStyle: {
-        fontSize: 15,
-      },
-      selectedTextStyle: {
-        fontSize: 15,
-      },
-      iconStyle: {
-        width: 25,
-        height: 25,
-      },
-      inputSearchStyle: {
-        height: 40,
-        fontSize: 16,
-        borderRadius:10
       },
 
       locationContainer:{

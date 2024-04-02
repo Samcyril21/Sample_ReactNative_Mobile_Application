@@ -36,9 +36,7 @@ const AddEnquiries = ({navigation},props) => {
         navigation.navigate(screeNames.EnquiryScreen)
     }
     navigation['isSearchIcon'] = false;
-    navigation.searchBarToggle = () => {
-        
-    }
+   
 
     const Categorydata = [
         { label: 'Sofa', value: '1' },

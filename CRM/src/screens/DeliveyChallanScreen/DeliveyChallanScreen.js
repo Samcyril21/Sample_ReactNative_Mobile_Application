@@ -8,6 +8,7 @@ import AddButton from "../../components/AddButtonComponent/AddButtonComponent";
 
 
 
+
 function DeliveryChallanScreen({navigation}) {
 
     const [searchBarVisible, setSearchBarVisible] = useState(false);
@@ -27,7 +28,7 @@ function DeliveryChallanScreen({navigation}) {
     }
     const addButtonProrps = {
         openAddModal: () => {
-                  
+                navigation.navigate(screeNames.AddDeliveryChallan)  
         }
     }
 

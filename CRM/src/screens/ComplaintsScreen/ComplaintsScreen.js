@@ -1,18 +1,23 @@
-import {React, useState} from "react";
-import {View, Text} from 'react-native';
+import {React, useState,useContext} from "react";
+import {View, Text,FlatList,PixelRatio} from 'react-native';
 import NavigationHeaderComponent from '../../components/NavigationHeaderComponent/NavigationHeaderComponent';
 import { screeNames } from '../../utils/ScreenNames';
 import {styles} from './Style';
 import SearchBarComponent from '../../components/SearchBarComponent/SearchBarComponent';
 import AddButton from "../../components/AddButtonComponent/AddButtonComponent";
+import { ComplaintListContext } from "../../contexts/ComplaintsContext";
+import ComplaintItem from "../../components/Listing/ComplaintItemComponent/ComplaintItem";
 
 
 
 function ComplaintsScreen({navigation}) {
 
     const [searchBarVisible, setSearchBarVisible] = useState(false);
+    const comlaintListData = useContext(ComplaintListContext);
+
+
     navigation['IsDrawer'] = true;
-    navigation['title'] = 'Complaints'
+    navigation['title'] = 'Complaints';
     navigation['OnDrawerPress'] = OnDrawerPress = () => {
         navigation.openDrawer();
         setSearchBarVisible(false);
@@ -27,7 +32,7 @@ function ComplaintsScreen({navigation}) {
     }
     const addButtonProrps = {
         openAddModal: () => {
-                  
+            navigation.navigate(screeNames.AddComplaintScreen)      
         }
     }
 
@@ -38,7 +43,13 @@ function ComplaintsScreen({navigation}) {
         <NavigationHeaderComponent navigation = {navigation}/>
         {searchBarVisible?<SearchBarComponent searchProps={searchProps}/>:<></>}
         <View style={styles.container}>
-            <Text>Complaints Screen </Text>
+          <View style={styles.container}>
+            <FlatList
+                style={{ marginHorizontal: PixelRatio.roundToNearestPixel(13), marginVertical: 5, padding:10}}
+                data={comlaintListData}
+                renderItem={({item}) => <ComplaintItem item={item} />}
+                keyExtractor={item => item.ComplaintId}/>
+          </View>
         </View>
         <AddButton addButtonProrps={addButtonProrps}/>
         </>
