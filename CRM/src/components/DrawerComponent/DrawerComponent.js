@@ -1,12 +1,14 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View, Text,Image} from 'react-native';
 import {styles} from './Style';
 import {TouchableOpacity } from 'react-native-gesture-handler';
 import {screeNames} from '../../utils/ScreenNames';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import IonIcons from 'react-native-vector-icons/Ionicons';
 import {Appstyles} from '../../config/styles';
+import {ImageSources} from '../../utils/ImageSources';
 
 
 
@@ -43,9 +45,16 @@ function DrawerComponent({navigation}) {
         navigation.navigate(screeNames.ComplaintsScreen)
         navigation.closeDrawer()
     }
+    const OnLogoutPress = () => {
+        navigation.navigate(screeNames.LoginScreen)
+        navigation.closeDrawer()
+    }
 
     return (
         <>
+        <View style={styles.navLogoContainer}>
+            <Image  style={styles.navLogo}source={ImageSources.AppImages.AppLogo}></Image>
+        </View>
         <View style={styles.navHeader}>
         <Text style={{color:Appstyles.colors.COLOR_BLACK,marginHorizontal:20,fontSize:17}} >Menu</Text>
         </View>
@@ -73,7 +82,7 @@ function DrawerComponent({navigation}) {
             </TouchableOpacity>
             <TouchableOpacity onPress={OnQuotationPress} style={styles.navItem}>
                 <MaterialCommunityIcons name="clipboard-text-multiple" color={Appstyles.colors.COLOR_BLACK} size={26} />
-                <Text style={styles.navItemText}>Quatations </Text>
+                <Text style={styles.navItemText}>Quotations </Text>
                 <View style={{marginLeft:'auto'}}>
                 <MaterialCommunityIcons name="chevron-right" color={Appstyles.colors.COLOR_BLACK} size={26} />
                 </View>
@@ -106,6 +115,17 @@ function DrawerComponent({navigation}) {
                 <MaterialCommunityIcons name="chevron-right" color={Appstyles.colors.COLOR_BLACK} size={26} />
                 </View>  
             </TouchableOpacity>
+            <TouchableOpacity onPress={OnLogoutPress} style={styles.navItem}>
+                <AntDesign name="logout" color={Appstyles.colors.COLOR_BLACK} size={26} />
+                <Text style={styles.navItemText}>Logout </Text>
+                <View style={{marginLeft:'auto'}}>
+                {/* <MaterialCommunityIcons name="chevron-right" color={Appstyles.colors.COLOR_BLACK} size={26} /> */}
+                </View>
+            </TouchableOpacity>
+        </View>
+        <View style={styles.footer}>
+            <IonIcons name="logo-android" color={Appstyles.colors.COLOR_BLACK} size={20} />
+            <Text style={styles.footerText}>  Powered By Coleague Solutions  </Text>
         </View>
         </>
         

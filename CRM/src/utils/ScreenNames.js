@@ -13,4 +13,7 @@ export const screeNames ={
     AddQuotationScreen:'AddQuotationScreen',
     AddComplaintScreen:'AddComplaintScreen',
     AddDeliveryChallan:'AddDeliveryChallanScreen',
+    AddStaffScreen:'AddStaffScreen',
+    QuotationDetailsScreen:'QuotationDetailsScreen',
+    
 }

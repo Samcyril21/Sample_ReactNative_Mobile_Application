@@ -9,6 +9,9 @@ import DropdownComponent from '../DropdownComponent/DropdownComponent';
 import NavigationHeaderComponent from '../NavigationHeaderComponent/NavigationHeaderComponent';
 import { EnquiryListContext } from '../../contexts/EnquiriesContext';
 import { EnquiryDispatchContext } from '../../contexts/EnquiriesContext';
+import DateMode from '../../components/DatepickerComponent/Datepicker';
+import IonIcon from 'react-native-vector-icons/Ionicons';
+import { formatDate } from '../../config/formatDate';
 
 
 const AddEnquiries = ({navigation},props) => {
@@ -81,6 +84,7 @@ const OnCancelPress = () => {
         Pincode:'',
         Requirements:'',})
   }
+  
   const OnSavePress = () => {
     if(newEnquiry.CustomerName === '') {
         alert('Enter Customer Name');
@@ -106,9 +110,24 @@ const OnCancelPress = () => {
             Pincode:'',
             Requirements:'',})
        navigation.navigate(screeNames.EnquiryScreen)
-    }
-    
+    }  
   }
+
+  const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
+  const handleDateConfirm = (date) => {
+    const formattedDate = formatDate(date);
+    setNewEnquiry((prevEnquiry) => ({
+        ...prevEnquiry,
+        FollowUpDate: formattedDate,
+    }));
+    console.log('Date confirmed:', formattedDate);
+    setIsDatePickerOpen(false);
+};
+
+  const handleDateCancel = () => {
+      console.log('Date selection cancelled');
+      setIsDatePickerOpen(false);
+  };
 
     return (
     <>
@@ -128,13 +147,21 @@ const OnCancelPress = () => {
                 <Text style={styles.modalLable}>Category</Text>
                 <DropdownComponent  dropdownProps={dropdownProps}/>
                 <Text style={styles.modalLable}>Follow-Up-Date</Text>
-                <View  style={styles.inputView}>
+                <View  style={styles.dateInputView}>
                   <TextInput style={styles.input}
                      onChangeText={(text) => setNewEnquiry({...newEnquiry, FollowUpDate: text})}
                      value={newEnquiry.FollowUpDate}
                      placeholder="dd/mm/yyyy"
                      >
                   </TextInput>
+                  <TouchableOpacity  onPress={() => setIsDatePickerOpen(true)}>
+                     <IonIcon name="calendar" size={20} color="#000"></IonIcon>
+                     <DateMode
+                     open={isDatePickerOpen}
+                     onConfirm={handleDateConfirm}
+                     onCancel={handleDateCancel}
+                     />
+                </TouchableOpacity>
                 </View>
                 <Text style={styles.modalLable}>Phone</Text>
                 <View  style={styles.inputView}>

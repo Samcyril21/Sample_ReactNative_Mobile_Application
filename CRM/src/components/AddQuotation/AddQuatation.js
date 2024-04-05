@@ -1,4 +1,4 @@
-import React, { Component, useState, useContext } from 'react';
+import React, { useState, useContext, useEffect} from 'react';
 import { View, Text, Button, StyleSheet, TextInput, Dimensions } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { ProgressSteps, ProgressStep } from 'react-native-progress-steps';
@@ -11,6 +11,9 @@ import IonIcon from 'react-native-vector-icons/Ionicons';
 import { QuotationsDispatchContext } from '../../contexts/QuotationsContext';
 import { QuotationListContext } from '../../contexts/QuotationsContext';
 import { useToast } from 'react-native-toast-notifications';
+import DateMode from '../../components/DatepickerComponent/Datepicker';
+import { formatDate } from '../../config/formatDate';
+import { ProductListContext } from '../../contexts/ProductContext';
 
 
 
@@ -31,13 +34,14 @@ const AddQuatation = ({ navigation }, props) => {
     TotalAmount: '1000',
     DeliveryDate: '',
     Contact: '',
-    ProuctImages: [],
+    ProuctImages:[],
     Requirements: '',
-    Items: [],
-    Payments: []
+    Items:[],
+    Payments:[]
   })
   const setQuotationList = useContext(QuotationsDispatchContext);
   const quotationList = useContext(QuotationListContext);
+  const productList = useContext(ProductListContext);
 
 
 
@@ -72,14 +76,7 @@ const AddQuatation = ({ navigation }, props) => {
   { label: '45 DAYS', value: '4' },
   { label: '60 DAYS', value: '5' }]
 
-  const products = [{ label: 'Sofa', value: '1' },
-  { label: 'Table', value: '2' },
-  { label: 'King size bed', value: '3' },
-  { label: 'Queen size bed', value: '4' },
-  { label: 'Chair', value: '5' },
-  { label: 'Desk', value: '6' },
-  { label: 'Cot', value: '7' },
-  { label: 'Window', value: '8' },]
+  const products = productList.map((item) => ({ label: item.title, value: item.ProductId }));
 
   const paymentModes = [{ label: 'Cash', value: '1' },
   { label: 'Cheque', value: '2' },
@@ -137,6 +134,11 @@ const AddQuatation = ({ navigation }, props) => {
     placeholder: "Select Payment Mode",
     searchPlaceholder: "Search"
   }
+
+
+  useEffect(() => {
+    console.log(quotationList);
+  }, [quotationList]);
 
   const onNextStep = () => {
     if (currentStep === 0 && !validateStep1()) {
@@ -229,14 +231,39 @@ const AddQuatation = ({ navigation }, props) => {
     console.log(payments);
   };
 
+  const [isQuotationDatePickerOpen, setIsQuotationDatePickerOpen] = useState(false);
+  const [isDeliveryDatePickerOpen, setIsDeliveryDatePickerOpen] = useState(false);
+
+  const handleQuotationDateConfirm = (date) => {
+    const formattedDate = formatDate(date);
+    setNewQuotation((prevEnquiry) => ({
+        ...prevEnquiry,
+        QuotationDate: formattedDate,
+    }));
+};
+const handleDeliveryDateConfirm = (date) => {
+  const formattedDate = formatDate(date);
+  setNewQuotation((prevEnquiry) => ({
+      ...prevEnquiry,
+      DeliveryDate: formattedDate,
+  }));
+};
+
+  const handleDateCancel = () => {
+      setIsQuotationDatePickerOpen(false);
+      setIsDeliveryDatePickerOpen(false);
+  };
+
 
   const onSubmit = () => {
-    setNewQuotation({ ...newQuotation, Items: items, Payments: payments });
-    setQuotationList([...quotationList, newQuotation]);
+    // setNewQuotation({ ...newQuotation, Items: items, Payments: payments });
+    const updatedQuotation = { ...newQuotation, Items: items, Payments: payments };
+    setQuotationList([...quotationList, updatedQuotation]);
     console.log(quotationList);
     navigation.navigate(screeNames.QuatationsScreen);
     toast.show("Submitted successfully", { type: "success" });
   }
+  
 
   return (
     <>
@@ -262,25 +289,41 @@ const AddQuatation = ({ navigation }, props) => {
                 <DropdownComponent dropdownProps={PaymentTermsdropdownProps} onValueChange={(value) => setNewQuotation({ ...newQuotation, PaymentTerms: value })} />
                 <View>
                   <Text style={styles.modalLable}>Quotation Date</Text>
-                  <View style={styles.inputView}>
-                    <TextInput style={styles.input}
-                      onChangeText={(text) => setNewQuotation({ ...newQuotation, QuotationDate: text })}
-                      value={newQuotation.QuotationDate}
-                      placeholder="DD/MM/YYYY"
-                    >
-                    </TextInput>
-                  </View>
+                  <View  style={styles.dateInputView}>
+                  <TextInput style={styles.input}
+                     onChangeText={(text) => setNewQuotation({...newQuotation, QuotationDate: text})}
+                     value={newQuotation.QuotationDate}
+                     placeholder="dd/mm/yyyy"
+                     >
+                  </TextInput>
+                  <TouchableOpacity  onPress={() => setIsQuotationDatePickerOpen(true)}>
+                     <IonIcon name="calendar" size={20} color="#000"></IonIcon>
+                     <DateMode
+                     open={isQuotationDatePickerOpen}
+                     onConfirm={handleQuotationDateConfirm}
+                     onCancel={handleDateCancel}
+                     />
+                </TouchableOpacity>
+                </View>
                 </View>
                 <View>
                   <Text style={styles.modalLable}>Delivery Date</Text>
-                  <View style={styles.inputView}>
-                    <TextInput style={styles.input}
-                      onChangeText={(text) => setNewQuotation({ ...newQuotation, DeliveryDate: text })}
-                      value={newQuotation.DeliveryDate}
-                      placeholder="DD/MM/YYYY"
-                    >
-                    </TextInput>
-                  </View>
+                  <View  style={styles.dateInputView}>
+                  <TextInput style={styles.input}
+                     onChangeText={(text) => setNewQuotation({...newQuotation, DeliveryDate: text})}
+                     value={newQuotation.DeliveryDate}
+                     placeholder="dd/mm/yyyy"
+                     >
+                  </TextInput>
+                  <TouchableOpacity  onPress={() => setIsDeliveryDatePickerOpen(true)}>
+                     <IonIcon name="calendar" size={20} color="#000"></IonIcon>
+                     <DateMode
+                     open={isDeliveryDatePickerOpen}
+                     onConfirm={handleDeliveryDateConfirm}
+                     onCancel={handleDateCancel}
+                     />
+                </TouchableOpacity>
+                </View>
                 </View>
                 <View>
                   <Text style={styles.modalLable}>Product Images</Text>

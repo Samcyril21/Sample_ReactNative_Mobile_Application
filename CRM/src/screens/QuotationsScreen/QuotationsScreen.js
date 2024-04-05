@@ -35,6 +35,11 @@ function QuotationsScreen({navigation}) {
         }
     }
 
+    OnQuotationNumberClick = (item) => {
+        navigation.navigate(screeNames.QuotationDetailsScreen,{item})
+        console.log('before',item)
+    }
+
 
 
     return (
@@ -46,7 +51,7 @@ function QuotationsScreen({navigation}) {
             <FlatList
                 style={{ marginHorizontal: PixelRatio.roundToNearestPixel(13), marginVertical: 5, padding:10}}
                 data={quotationList}
-                renderItem={({item}) => <QuotationItem item={item} />}
+                renderItem={({item}) => <QuotationItem item={item} OnQuotationNumberClick={() => OnQuotationNumberClick(item)} />}
                 keyExtractor={item => item.QuotationId}/>
               </View>
         </View>

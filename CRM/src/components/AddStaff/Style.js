@@ -9,6 +9,7 @@ export const styles = StyleSheet.create({
    
       modalContainer:{
         padding:30,
+    
       },
       modalHeaderView:{
         flexDirection: 'row',
@@ -37,57 +38,18 @@ export const styles = StyleSheet.create({
         padding: 10,
         borderColor:Appstyles.colors.COLOR_LIGHT_GREY,
         borderRadius: 8,
-        justifyContent:'center'
+        justifyContent:'center',
+
       },
-      dateInputView:{
-        height: 50,
-        marginTop: 10,
-        borderWidth: 0.5,
-        padding: 10,
-        borderColor:Appstyles.colors.COLOR_LIGHT_GREY,
-        borderRadius: 8,
-        justifyContent:'space-between',
-        flexDirection:'row',
-        alignItems:'center'
-      },
-      locationinputView:{
-        height: 50,
-        width:120,
-        maxWidth:120,
-        marginTop: 15,
-        borderWidth: 0.5,
-        padding: 10,
-        borderColor:Appstyles.colors.COLOR_LIGHT_GREY,
-        borderRadius: 8,
-        justifyContent:'center'
-      },
+      
       input:{
         height:60
-      },
-      productImageview:{
-        height: 130,
-        marginTop: 10,
-        borderWidth: 0.5,
-        padding: 10,
-        borderColor:Appstyles.colors.COLOR_LIGHT_GREY,
-        borderRadius: 8,
-        justifyContent:'center',
-        alignItems:'center'
-      },
-      descriptionView:{
-        height: 80,
-        marginTop: 10,
-        borderWidth: 0.5,
-        padding: 10,
-        borderColor:Appstyles.colors.COLOR_LIGHT_GREY,
-        borderRadius: 8,
-        justifyContent:'center'
       },
       modalFooterView:{
         flexDirection: 'row',
         justifyContent: 'center',
-        margin:20,
-        alignItems:'center',
+        alignItems:'center'
+                 
       },
       modalButton:{
         backgroundColor:Appstyles.colors.PRIMARY_LIGHT_COLOR,
@@ -98,10 +60,9 @@ export const styles = StyleSheet.create({
         alignItems:'center',
         justifyContent:'center'
       },
-
-      locationContainer:{
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between',
+      checkboxView:{
+        width:width,
+        height: 200,
+        margin: 10, 
       }
 });

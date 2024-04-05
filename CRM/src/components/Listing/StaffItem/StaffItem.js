@@ -5,23 +5,23 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import { TouchableOpacity } from "react-native-gesture-handler";
 
 
-const QuotationItem = (props) => {
+const StaffItem = (props) => {
     return (
 
         <View style={styles.container}>
             <View style={styles.innerContainer}>
-                <TouchableOpacity onPress={props.OnQuotationNumberClick}>
-                <Text style={styles.ProductId}>{props.item.QuotationId}</Text>
-                </TouchableOpacity>
-                <Text style={styles.innerContainerText}>{props.item.CustomerName} </Text>
+                <Text style={styles.StaffId}>{props.item.StaffId}</Text>
+                
+                <Text style={styles.innerContainerText}>{props.item.Name} </Text>
+                <Text style={styles.innerContainerText}>{props.item.Accesses}   </Text>
             </View>
             <View>
                 <TouchableOpacity style={styles.actionContainer}>
                     <MaterialCommunityIcons name="dots-horizontal" size={20} color="#000" />
                 </TouchableOpacity>
-                <Text style={styles.AddedOn}>{props.item.QuotationDate} </Text>
+                <Text style={styles.AddedOn}>{props.item.AddedOn} </Text>
             </View>
         </View>
     );
 }
-export default QuotationItem;
+export default StaffItem;

@@ -32,6 +32,17 @@ export const styles = StyleSheet.create({
         borderRadius: 8,
         justifyContent:'center'
       },
+      dateInputView:{
+        height: 50,
+        marginTop: 10,
+        borderWidth: 0.5,
+        padding: 10,
+        borderColor:Appstyles.colors.COLOR_LIGHT_GREY,
+        borderRadius: 8,
+        justifyContent:'space-between',
+        flexDirection:'row',
+        alignItems:'center'
+      },
       subjectView:{
         marginTop: 10,
         borderWidth: 0.5,

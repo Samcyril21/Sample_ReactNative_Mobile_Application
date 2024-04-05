@@ -16,6 +16,7 @@ import { Appstyles } from "../../config/styles";
 
 
 
+
 function ProductsScreen({navigation}) {
     const [searchBarVisible, setSearchBarVisible] = useState(false);
     const [modalVisible, setModalVisible] = useState(false);
@@ -42,23 +43,26 @@ function ProductsScreen({navigation}) {
         }
     }
     
+    
     return (    
         <> 
         <NavigationHeaderComponent navigation={navigation}/>
         {searchBarVisible?<SearchBarComponent searchProps={searchProps}/>:<></>}
         {/* <SafeAreaView>
           <ScrollView> */}
-              <View style={styles.container}>
+              <View style={styles.container}> 
                 <FlatList
                 style={{ marginHorizontal: PixelRatio.roundToNearestPixel(13), marginVertical: 5, padding:10}}
                 data={ProductList}
                 renderItem={({item}) => <ProductItem item={item} />}
                 keyExtractor={item => item.ProductId}/>
               </View>
-              <AddProduct modalVisible={modalVisible} setModalVisible={setModalVisible}/>  
+              <AddProduct modalVisible={modalVisible} setModalVisible={setModalVisible}/> 
+              
           {/* </ScrollView>
         </SafeAreaView> */}
         <AddButton addButtonProrps={addButtonProrps}/>
+        
        </>
     );
 }

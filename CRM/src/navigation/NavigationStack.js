@@ -24,6 +24,9 @@ import {ComplaintListProvider} from '../contexts/ComplaintsContext';
 import AddComplaints from '../components/AddComplaints/AddComplaints';
 import AddDeliveryChallan from '../components/AddDeliveryChallan/AddDeliveryChallan';
 import {DeliveryChallanListProvider} from '../contexts/DeliveryChallansContext';
+import AddStaffScreen from '../components/AddStaff/AddStaff';
+import { StaffListProvider } from '../contexts/StaffsContext';
+import QuotationDetails from '../screens/DetailScreens/QuotationDetailsScreen/QuotationDetails';
 
 
 const {Navigator, Screen} = createStackNavigator();
@@ -53,7 +56,7 @@ function DrawerNavigator() {
       <Drawer.Screen name={screeNames.DeliveryChallanScreen} component={DeliveryChallanStackNavigator}/>
       <Drawer.Screen name={screeNames.JobCardsScreen} component={JobCardsScreen}/>
       <Drawer.Screen name={screeNames.ComplaintsScreen} component={ComplaintStackNavigator}/>
-      <Drawer.Screen name={screeNames.AccessManagementScreen} component={AccessManagementScreen}/>
+      <Drawer.Screen name={screeNames.AccessManagementScreen} component={AccessmanagementStackNavigator}/>
     </Drawer.Navigator>
   );
 }
@@ -66,6 +69,7 @@ function QuationStackNavigator() {
       }}>
       <Screen name={screeNames.QuatationsScreen} component={QuotationsScreen} />
       <Screen name={screeNames.AddQuotationScreen} component={AddQuatation} />
+      <Screen name={screeNames.QuotationDetailsScreen} component={QuotationDetails} />
     </Navigator>
   );
 }
@@ -97,8 +101,6 @@ function DeliveryChallanStackNavigator() {
         name={screeNames.AddDeliveryChallan}
         component={AddDeliveryChallan}
       />
-
-
     </Navigator>
   );
 }
@@ -115,6 +117,19 @@ function ComplaintStackNavigator() {
     </Navigator>
   );
 }
+
+function AccessmanagementStackNavigator() {
+  return (
+    <Navigator
+      initialRouteName={screeNames.AccessManagementScreen}
+      screenOptions={{
+        headerShown: false,
+      }}>
+      <Screen name={screeNames.AccessManagementScreen} component={AccessManagementScreen}/>
+      <Screen name={screeNames.AddStaffScreen} component={AddStaffScreen}/>
+    </Navigator>
+  );
+}
   return (
  <NavigationContainer>
     <ProductProvider>
@@ -122,7 +137,9 @@ function ComplaintStackNavigator() {
         <QuotationListProvider>
           <ComplaintListProvider>
             <DeliveryChallanListProvider>
+            <StaffListProvider>
             <DrawerNavigator/>
+            </StaffListProvider>
             </DeliveryChallanListProvider>
           </ComplaintListProvider>
         </QuotationListProvider>

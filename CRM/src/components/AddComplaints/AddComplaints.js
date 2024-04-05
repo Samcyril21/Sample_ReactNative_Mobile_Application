@@ -7,6 +7,9 @@ import { Appstyles } from '../../config/styles';
 import IonIcon from 'react-native-vector-icons/Ionicons'; 
 import { ComplaintListContext, ComplaintDispatchContext } from '../../contexts/ComplaintsContext';
 import { useToast } from 'react-native-toast-notifications';
+import DateMode from '../../components/DatepickerComponent/Datepicker';
+import { formatDate } from "../../config/formatDate";
+
 
 
 
@@ -65,6 +68,33 @@ const AddComplaints = ({navigation}) => {
             toast.show('Complaint Added Successfully', { type: 'success' });
         }
      }
+
+  const [isComplaintDatePickerOpen, setIsComplaintDatePickerOpen] = useState(false);
+  const [isWorkeCompletedDatePickerOpen, setIsWorkeCompletedDatePickerOpen] = useState(false);
+
+
+  const handleComplaintDateConfirm = (date) => {
+    const formattedDate = formatDate(date);
+    setNewComplaint((prevEnquiry) => ({
+        ...prevEnquiry,
+        ComplaintDate: formattedDate,
+    }));
+    setIsComplaintDatePickerOpen(false);
+  };
+
+  const handleWorkeCompletedDateConfirm = (date) => {
+    const formattedDate = formatDate(date);
+    setNewComplaint((prevEnquiry) => ({
+        ...prevEnquiry,
+        WorkeCompletedDate: formattedDate,
+    }));
+    setIsWorkeCompletedDatePickerOpen(false);
+  };
+
+  const handleDateCancel = () => {
+    setIsComplaintDatePickerOpen(false);
+    setIsWorkeCompletedDatePickerOpen(false);
+  };
         
     return (
         <>
@@ -92,13 +122,21 @@ const AddComplaints = ({navigation}) => {
                 </View>
                 
                 <Text style={styles.modalLable}>Complaint Date</Text>
-                <View  style={styles.inputView}>
+                <View  style={styles.dateInputView}>
                   <TextInput style={styles.input}
                      onChangeText={(text) => setNewComplaint({...newComplaint, ComplaintDate: text})}
                      value={newComplaint.ComplaintDate}
-                     placeholder="DD/MM/YYYY"
+                     placeholder="dd/mm/yyyy"
                      >
                   </TextInput>
+                  <TouchableOpacity  onPress={() => setIsComplaintDatePickerOpen(true)}>
+                     <IonIcon name="calendar" size={20} color="#000"></IonIcon>
+                     <DateMode
+                     open={isComplaintDatePickerOpen}
+                     onConfirm={handleComplaintDateConfirm}
+                     onCancel={handleDateCancel}
+                     />
+                </TouchableOpacity>
                 </View>
                 <Text style={styles.modalLable}>Phone</Text>
                 <View  style={styles.inputView}>
@@ -110,13 +148,21 @@ const AddComplaints = ({navigation}) => {
                   </TextInput>
                 </View>
                 <Text style={styles.modalLable}>Work Completed On</Text>
-                <View  style={styles.inputView}>
+                <View  style={styles.dateInputView}>
                   <TextInput style={styles.input}
                      onChangeText={(text) => setNewComplaint({...newComplaint, WorkeCompletedDate: text})}
                      value={newComplaint.WorkeCompletedDate}
-                     placeholder="DD/MM/YYYY"
+                     placeholder="dd/mm/yyyy"
                      >
                   </TextInput>
+                  <TouchableOpacity  onPress={() => setIsWorkeCompletedDatePickerOpen(true)}>
+                     <IonIcon name="calendar" size={20} color="#000"></IonIcon>
+                     <DateMode
+                     open={isWorkeCompletedDatePickerOpen}
+                     onConfirm={handleWorkeCompletedDateConfirm}
+                     onCancel={handleDateCancel}
+                     />
+                </TouchableOpacity>
                 </View>
                 <Text style={styles.modalLable}>Work Completed By</Text>
                 <View  style={styles.inputView}>

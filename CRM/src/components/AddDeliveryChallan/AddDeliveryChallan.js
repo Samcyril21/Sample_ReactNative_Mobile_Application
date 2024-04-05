@@ -11,6 +11,8 @@ import IonIcon from 'react-native-vector-icons/Ionicons';
 import {DeliveryChallanListContext} from '../../contexts/DeliveryChallansContext';
 import { DeliveryChallanDispatchContext } from "../../contexts/DeliveryChallansContext";
 import { useToast } from 'react-native-toast-notifications';
+import DateMode from '../../components/DatepickerComponent/Datepicker';
+import { formatDate } from '../../config/formatDate';
 
 
 
@@ -296,6 +298,19 @@ const AddDeliveryChallan = ({navigation},props) => {
        toast.show("Submitted successfully", { type: "success" });
      }
 
+     const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
+     const handleDateConfirm = (date) => {
+       const formattedDate = formatDate(date);
+       setNewDeliveryChallan((prevEnquiry) => ({
+           ...prevEnquiry,
+           DeliveryDate: formattedDate,
+       }));
+       setIsDatePickerOpen(false);
+   };
+   
+     const handleDateCancel = () => {
+         setIsDatePickerOpen(false);
+     };
    
     return (
         <>
@@ -324,13 +339,22 @@ const AddDeliveryChallan = ({navigation},props) => {
                        </View>
                        <View>
                             <Text style={styles.modalLable}>Delivery Date</Text>
-                            <View style={styles.inputView}>
+                            <View  style={styles.dateInputView}>
                             <TextInput style={styles.input}
-                            onChangeText={(text) => setNewDeliveryChallan({ ...newDeliveryChallan, DeliveryDate: text })}
+                            onChangeText={(text) => setNewDeliveryChallan({...newDeliveryChallan, DeliveryDate: text})}
                             value={newDeliveryChallan.DeliveryDate}
-                             placeholder="DD/MM/YYYY"
-                            />
-                           </View>
+                            placeholder="dd/mm/yyyy"
+                            >
+                           </TextInput>
+                           <TouchableOpacity  onPress={() => setIsDatePickerOpen(true)}>
+                           <IonIcon name="calendar" size={20} color="#000"></IonIcon>
+                           <DateMode
+                           open={isDatePickerOpen}
+                           onConfirm={handleDateConfirm}
+                           onCancel={handleDateCancel}
+                           />
+                         </TouchableOpacity>
+                       </View>
                        </View>
                        <View>
                             <Text style={styles.modalLable}>Phone Number 1</Text>
@@ -355,6 +379,7 @@ const AddDeliveryChallan = ({navigation},props) => {
                     </View>
                     </View>  
             </ProgressStep>
+            
             <ProgressStep label="Addresses" onNext={onNextStep} onPrevious={onPreviousStep} errors={errors[1]} {...progressBarButtonStyle}>
                <View style={styles.modalContainer}>
                <Text style={styles.modalLable}>Delivery Address</Text>
