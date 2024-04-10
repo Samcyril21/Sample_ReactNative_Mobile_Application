@@ -1,17 +1,18 @@
 import {React, useState, useContext} from "react";
-import {View, Text, FlatList,PixelRatio} from 'react-native';
+import {View, Text, FlatList,PixelRatio,Dimensions} from 'react-native';
 import NavigationHeaderComponent from '../../components/NavigationHeaderComponent/NavigationHeaderComponent';
 import { screeNames } from '../../utils/ScreenNames';
 import SearchBarComponent from '../../components/SearchBarComponent/SearchBarComponent';
 import AddButton from "../../components/AddButtonComponent/AddButtonComponent";
 import QuotationItem from "../../components/Listing/QuotationItemComponent/QuotationItemComponent";
 import { QuotationListContext } from "../../contexts/QuotationsContext";
-import {styles} from './Style'
+import {styles} from './Style';
+var {width, height} = Dimensions.get('window');
 
 
 
 function QuotationsScreen({navigation}) {
-
+     console.log('width : ',width , 'height:', height)
 
     const [searchBarVisible, setSearchBarVisible] = useState(false);
     const quotationList = useContext(QuotationListContext);

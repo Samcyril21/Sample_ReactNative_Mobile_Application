@@ -29,11 +29,11 @@ const AddQuatation = ({ navigation }, props) => {
     QuotationId: '#16786',
     CustomerName: 'Samcyril',
     EnquiryNo: '',
-    PaymentTerms: '',
+    PaymentTerm: '',
     QuotationDate: '',
     TotalAmount: '1000',
     DeliveryDate: '',
-    Contact: '',
+    Contact: '9988776655',
     ProuctImages:[],
     Requirements: '',
     Items:[],
@@ -286,7 +286,7 @@ const handleDeliveryDateConfirm = (date) => {
                   </View>
                 </View>
                 <Text style={styles.modalLable}>Payment Terms</Text>
-                <DropdownComponent dropdownProps={PaymentTermsdropdownProps} onValueChange={(value) => setNewQuotation({ ...newQuotation, PaymentTerms: value })} />
+                <DropdownComponent dropdownProps={PaymentTermsdropdownProps} onValueChange={(value) => setNewQuotation({ ...newQuotation, PaymentTerm: value })} />
                 <View>
                   <Text style={styles.modalLable}>Quotation Date</Text>
                   <View  style={styles.dateInputView}>

@@ -11,6 +11,7 @@ function QuotationListProvider({ children }) {
             EnquiryNo:'#16786',
             QuotationDate: '01/01/2022',
             TotalAmount: '1000',
+            PaymentTerm: 'IMMIDIATE',
             DeliveryDate: '01/01/2022',
             Contact:'9988776655',
             ProuctImages:[],

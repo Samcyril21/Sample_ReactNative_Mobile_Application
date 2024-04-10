@@ -53,7 +53,7 @@ function DrawerComponent({navigation}) {
     return (
         <>
         <View style={styles.navLogoContainer}>
-            <Image  style={styles.navLogo}source={ImageSources.AppImages.AppLogo}></Image>
+            <Image  style={styles.navLogo} source={ImageSources.AppImages.AppLogo}></Image>
         </View>
         <View style={styles.navHeader}>
         <Text style={{color:Appstyles.colors.COLOR_BLACK,marginHorizontal:20,fontSize:17}} >Menu</Text>

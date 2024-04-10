@@ -14,6 +14,7 @@ const styles = StyleSheet.create({
         height:70,
         alignItems:'center',
         paddingRight:20,
+        backgroundColor:Appstyles.colors.NAVIGATION_HEADER_COLOR
     },
     titleText:{
          fontWeight:'bold',
@@ -21,6 +22,9 @@ const styles = StyleSheet.create({
          marginLeft:20,
          color:Appstyles.colors.COLOR_BLACK
     },
+    dateText:{
+        marginLeft:22, 
+    },    
     searchIconContainer: {
         position: 'absolute',
         right: 20,
@@ -29,6 +33,11 @@ const styles = StyleSheet.create({
     },
     searchIcon:{
     margin:'auto',
+    },
+    line:{
+        height:0.5,
+        backgroundColor:Appstyles.colors.COLOR_BLACK,
+        width:width
     }
 });
 

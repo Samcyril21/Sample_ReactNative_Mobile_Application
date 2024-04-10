@@ -8,5 +8,6 @@ export const ImageSources = {
     },
     AppImages: {
         AppLogo:require('../assets/Images/AppImages/crmLogo.jpg'),
+        MobileImage:require('../assets/Images/AppImages/MobileImage.png'),
     }
 }

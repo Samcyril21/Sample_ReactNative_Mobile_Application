@@ -70,7 +70,7 @@ const AddStaffScreen = ({navigation}) => {
             screenId:7,
             screenName:'Dashboard',
             isChecked:false
-            
+
         },
     ]);
 
@@ -99,8 +99,8 @@ const AddStaffScreen = ({navigation}) => {
 
     OnSavePress = () => {
         const checkedScreensNames = AccessScreensData.filter(item => item.isChecked).map(item => item.screenName).join();
-        setNewStaff({...newStaff,Accesses:checkedScreensNames});
-        setStaffList([...existingStaffList,newStaff]);
+        const updatedStaffAccesses ={...newStaff,Accesses:checkedScreensNames};
+        setStaffList([...existingStaffList,updatedStaffAccesses]);
         console.log(existingStaffList)
         console.log(newStaff)
         navigation.navigate(screeNames.AccessManagementScreen)

@@ -12,6 +12,7 @@ export const styles = StyleSheet.create({
        borderRadius:10,
        height:50,
        justifyContent:'center',
+       marginTop:10
     },
     inputContainerStyle:{
         backgroundColor:'transparent',

@@ -29,7 +29,7 @@ export default class SearchBarComponent extends React.Component {
         containerStyle={styles.searchBarContainer}
         inputContainerStyle={styles.inputContainerStyle}
         inputStyle={{color:Appstyles.colors.COLOR_BLACK}}
-        placeholderTextColor={Appstyles.colors.COLOR_LIGHT_GREY}
+        placeholderTextColor={Appstyles.colors.PLACE_HOLDER_COLOR}
         searchIcon={<Icon name="search" color={Appstyles.colors.PRIMARY_COLOR} size={25} />}
       />
     );
